@@ -24,6 +24,16 @@ function App() {
         setTasks([{id:v1(), title:title, isDone:false}, ...tasks])
     }
 
+    function changeStatus (id:string, isDone:boolean) {
+        debugger
+
+        let task = tasks.find(t =>  t.id === id)
+        if (task) {
+            task.isDone =  isDone
+            setTasks([...tasks])
+        }
+    }
+
 
     let [filter, setFilter] =useState<FilterValuesType>("all")
 
@@ -50,6 +60,8 @@ function App() {
                       removeTask = {removeTask}
                       chengeFileter = {chengeFileter}
                       addTask = {addTask}
+                      changeStatus = {changeStatus}
+                      filter = {filter}
             />
         </div>
     );
