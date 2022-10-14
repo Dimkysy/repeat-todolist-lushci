@@ -10,19 +10,3 @@
 .buttonDell {
   margin-left: 10px;
 }
-
-.error {
-  border:1px solid red;
-}
-
-.error-message {
-  color: red;
-}
-
-.actve-filter {
-  background-color: aquamarine;
-}
-
-.is-done {
-  opacity: 0.5;
-}
