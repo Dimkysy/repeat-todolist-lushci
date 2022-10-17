@@ -1,4 +1,5 @@
 import React from "react";
+import {FilterValuesType} from "./App";
 
 
 type TaskType = {
@@ -7,9 +8,13 @@ type TaskType = {
     isDone:boolean
 }
 
+
+
 type PropsType = {
     title:string
     tasks:Array<TaskType>
+    removeTasks:(id:number) => void
+    changeFileter:(value:FilterValuesType) => void
 }
 
 export function Todolist(props:PropsType) {
@@ -22,14 +27,23 @@ export function Todolist(props:PropsType) {
                 <button>+</button>
             </div>
             <ul>
-                <li><input type="checkbox" checked={props.tasks[0].isDone}/> <span>{props.tasks[0].title}</span></li>
-                <li><input type="checkbox" checked={props.tasks[1].isDone}/> <span>{props.tasks[1].title}</span></li>
-                <li><input type="checkbox" checked={props.tasks[2].isDone}/> <span>{props.tasks[2].title}</span></li>
+
+
+                {
+                    props.tasks.map(t => <li key={t.id}>
+                            <input type="checkbox" checked = {t.isDone}/>
+                            <span>{t.title}</span>
+                            <button onClick={ () => props.removeTasks(t.id)}>x</button>
+                    </li>
+                    )
+                }
+
+
             </ul>
             <div>
-                <button>All</button>
-                <button>Active</button>
-                <button>Completed</button>
+                <button onClick={()=> props.changeFileter("all") } >All</button>
+                <button  onClick={ () => props.changeFileter("active")} >Active</button>
+                <button onClick={ ()=> props.changeFileter("completed")} >Completed</button>
             </div>
         </div>
     )
